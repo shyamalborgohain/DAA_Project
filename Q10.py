@@ -9,7 +9,7 @@ def optimal_transmitters(posts, L, candidates, r=500):
         return 0, []
     if not candidates:
         return None
-    if 2*rs >= L:
+    if 2*r >= L:
         return 0, [candidates[0]]
     
     extP = [q-L for q in P] + P + [q+L for q in P]
