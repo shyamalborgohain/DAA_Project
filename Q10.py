@@ -2,22 +2,22 @@ from bisect import bisect_left, bisect_right
 from collections import deque
 from math import inf
 
-def optimal_transmitters(posts, L, candidates, radius=500):
+def optimal_transmitters(posts, L, candidates, r=500):
     P = sorted(q%L for q in posts)
     n = len(P)
     if n == 0:
         return 0, []
     if not candidates:
         return None
-    if 2*radius >= L:
+    if 2*rs >= L:
         return 0, [candidates[0]]
     
     extP = [q-L for q in P] + P + [q+L for q in P]
     locs = {}
     for ca in candidates:
         c = ca % L
-        lo = bisect_left(extP, c - radius)
-        hi = bisect_right(extP, c + radius) - 1
+        lo = bisect_left(extP, c - r)
+        hi = bisect_right(extP, c + r) - 1
         if lo > hi:
             continue
         lo, hi = lo - n, hi - n
